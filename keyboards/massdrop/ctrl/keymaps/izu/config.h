@@ -15,11 +15,12 @@ enum ctrl_keycodes {
     DBG_MOU,               //DEBUG Toggle Mouse Prints
     MD_BOOT,               //Restart into bootloader after hold timeout
 
-    MC_SUSSY
+    MC_SUSSY,
+    MC_MTRX_CONSTELLATION
 };
 
 // Globals for rgb
-Macro g_macros[1];
+Macro g_macros[2];
 uint16_t g_keymaps[3][MATRIX_ROWS][MATRIX_COLS];
 keymap_config_t* g_keymap_config;
 uint16_t* g_layer_state;

@@ -1,4 +1,6 @@
+#include "config.h"
 #include "rgb_matrix.h"
+#include "util.h"
 
 #include "../key_info.h"
 
@@ -11,7 +13,7 @@ static RGBLayer rgb_layers[3];
 static void constellation_effect_init(effect_params_t* params) {
     rgb_layers[0] = create_constellation_rgb_layer();
     rgb_layers[1] = create_fn_rgb_layer(g_keymap_config);
-    rgb_layers[2] = create_macro_rgb_layer(g_macros, sizeof(g_macros)/sizeof(g_macros[0]));
+    rgb_layers[2] = create_macro_rgb_layer(g_macros);
 }
 
 static bool constellation_effect_run(effect_params_t *params) {

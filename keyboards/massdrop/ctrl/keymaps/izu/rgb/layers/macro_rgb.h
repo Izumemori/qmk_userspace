@@ -5,6 +5,6 @@
 
 #include "../../macros/macro.h"
 
-RGBLayer create_macro_rgb_layer(Macro* macros, size_t macros_size);
+RGBLayer create_macro_rgb_layer(Macro* macros);
 
 #endif

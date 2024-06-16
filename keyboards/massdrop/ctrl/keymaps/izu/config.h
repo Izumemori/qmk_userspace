@@ -2,6 +2,9 @@
 #define H_CONFIG
 
 #include "quantum_keycodes.h"
+#include "keycode_config.h"
+
+#include "macros/macro.h"
 
 enum ctrl_keycodes {
     U_T_AUTO = SAFE_RANGE, //USB Extra Port Toggle Auto Detect / Always Active
@@ -14,5 +17,12 @@ enum ctrl_keycodes {
 
     MC_SUSSY
 };
+
+// Globals for rgb
+Macro g_macros[1];
+uint16_t g_keymaps[3][MATRIX_ROWS][MATRIX_COLS];
+keymap_config_t* g_keymap_config;
+uint16_t* g_layer_state;
+// ---------------
 
 #endif

@@ -1,22 +1,15 @@
-#ifndef H_KEYMAP
-#define H_KEYMAP
+#ifndef KEYMAP_H
+#define KEYMAP_H
 
-#include "macro.h"
-#include "macros/sussy_macro.h"
-#include "rgb/constellation_keycaps_rgb.h"
-#include "rgb/macro_rgb.h"
-#include "rgb/fn_rgb.h"
-#include "rgb_mode.h"
-#include "matrix.h"
 #include QMK_KEYBOARD_H
+
+#include "macros/sussy_macro.h"
 
 #define MODS_SHIFT  (get_mods() & MOD_MASK_SHIFT)
 #define MODS_CTRL   (get_mods() & MOD_MASK_CTRL)
 #define MODS_ALT    (get_mods() & MOD_MASK_ALT)
 
 Macro macros[1];
-RGBLayer rgb_layers[3];
-uint8_t KEYCODE_TO_LED_ID[256];
 
 const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
     [0] = LAYOUT(
@@ -40,19 +33,26 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
         _______, _______, _______, _______, _______, _______, _______, _______, _______, _______, _______, _______, _______, _______,   _______, _______, _______,
         _______, MC_SUSSY,_______, _______, _______, _______, _______, _______, _______, _______, _______, _______, _______, _______,   _______, _______, _______,
         _______, _______, _______, _______, _______, _______, _______, _______, _______, _______, _______, _______, _______,
-        _______, _______, _______, _______, _______, _______, NK_TOGG, _______, _______, _______, _______, _______,                              _______,
+        _______, _______, _______, _______, _______, _______, _______, _______, _______, _______, _______, _______,                              _______,
         _______, _______, _______,                   _______,                            _______, _______, _______, _______,            _______, _______, _______
     ),
 };
 
-static void init_keycode_to_led_map(void);
-
 inline void matrix_init_user() {
+    rgb_matrix_mode(RGB_MATRIX_CUSTOM_constellation_effect);
     macros[0] = create_sussy_macro(MC_SUSSY);
-    rgb_layers[0] = create_constellation_rgb_layer();
-    rgb_layers[1] = create_fn_rgb_layer(&keymap_config);
-    rgb_layers[2] = create_macro_rgb_layer(macros, sizeof(macros)/sizeof(macros[0]));
-    init_keycode_to_led_map();
+
+    for (int i = 0; i < sizeof(macros) / sizeof(macros[0]); i++)
+        g_macros[i] = macros[i];
+
+    for (int i = 0; i < sizeof(keymaps)/sizeof(keymaps[0]); i++)
+        for (int j = 0; j < sizeof(keymaps[i])/sizeof(keymaps[i][0]); j++)
+            for (int k = 0; k < sizeof(keymaps[i][j])/sizeof(keymaps[i][j][0]); k++)
+                g_keymaps[i][j][k] = keymaps[i][j][k];
+
+    g_keymap_config = &keymap_config;
+
+    g_layer_state = &layer_state;
 }
 
 

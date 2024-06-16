@@ -3,11 +3,11 @@
 
 #include <stdint.h>
 #include "action.h"
-#include "utils/izu_color.h"
+#include "../rgb/key_info.h"
 
 struct Macro {
     uint16_t keycode;
-    IzuColor color;
+    const KeyInfo* key_info;
     bool (*action)(uint16_t keycode, keyrecord_t *record);
 } typedef Macro;
 

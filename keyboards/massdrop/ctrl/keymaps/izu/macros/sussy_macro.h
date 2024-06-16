@@ -1,7 +1,7 @@
-#ifndef H_SUSSY_MACRO
-#define H_SUSSY_MACRO
+#ifndef SUSSY_MACRO_H
+#define SUSSY_MACRO_H
 
-#include "../macro.h"
+#include "macro.h"
 
 bool sussy_macro_action(uint16_t keycode, keyrecord_t *record);
 

@@ -1,8 +1,9 @@
-#ifndef H_FN_RGB
-#define H_FN_RGB
+#ifndef FN_RGB_H
+#define FN_RGB_H
 
 #include "keycode_config.h"
-#include "../rgb_mode.h"
+
+#include "../rgb_layer.h"
 
 RGBLayer create_fn_rgb_layer(keymap_config_t* keymap_config);
 
